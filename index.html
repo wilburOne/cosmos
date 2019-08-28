@@ -1,1 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84290243-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-84290243-2');
+    </script>
+
+    <meta charset="utf-8">
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+    <title>Cosmos QA</title>
+    <meta name="generator" content="Jekyll v3.8.5" />
+<!--     <meta property="og:title" content="Welcome to GitHub Pages" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="canonical" href="https://wilburone.github.io/project-test/" />
+    <meta property="og:url" content="https://wilburone.github.io/project-test/" />
+    <meta property="og:site_name" content="project-test" /> -->
+    <!-- <script type="application/ld+json">
+    {"@type":"WebSite","headline":"Welcome to GitHub Pages","url":"https://wilburone.github.io/cosmos/","name":"project-test","@context":"http://schema.org"}</script> -->
+    <!-- End Jekyll SEO tag --
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
+    <style>
+        /* Show it is fixed to the top */
+        body {
+            padding-top: 4.5rem;
+            position: relative;
+        }
+
+        .anchor-target:target::before {
+            display: block;
+            content: " ";
+            margin-top: -60px;
+            padding-top: 60px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        .jumbotron {
+            margin-bottom: .5rem;
+            padding: 2rem 2rem;
+        }
+
+        .headshot {
+            width: 8rem;
+            margin: 0.4rem;
+        }
+
+        .card-body {
+            padding: 0.5rem;
+        }
+
+        .citation {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            word-break: break-all;
+            word-wrap: break-word;
+            color: #333;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .answerbutton {
+            white-space: normal !important;
+            word-wrap: break-word;
+            text-align: left;
+        }
+
+        /*.answergroup {*/
+        /*display: inline-grid;*/
+        /*}*/
+
+        .nav-font {
+            font-size: 1.3rem;
+        }
+
+        .box-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        }
+
+        .fig-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .15);
+        }
+
+        .clicked-correct:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .clicked-correct {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .border-2 {
+            border-width: 2px !important;
+        }
+
+        .border-3 {
+            border-width: 3px !important;
+        }
+
+        .clicked-wrong:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .clicked-wrong {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .navbar-brand {
+            font-family: cursive;
+            font-variant: small-caps;
+            font-size: 1.9rem;
+        }
+
+        .cosmos-name {
+            font-family: 'Times';
+            font-variant: small-caps;
+            font-size: 1.8rem;
+        }
+
+        .qa-name-large {
+            font-family: 'Times';
+            font-variant: small-caps;
+            font-size: 1.9rem;
+        }
+        .qa-name-normal {
+            font-family: 'Times';
+            font-variant: small-caps;
+            font-size: 1.3rem;
+        }
+        .qa-name-small {
+            font-family: 'Times';
+            font-variant: small-caps;
+            font-size: 1.2rem;
+        }
+        .cosmos-title {
+            font-family: 'Times';
+            font-size: 1.9rem;
+        }
+
+/*        .swagemph {
+            font-family: 'Damion', cursive;
+        }*/
+
+        .msg {
+            margin-bottom: 0;
+        }
+
+        /*https://stackoverflow.com/questions/35647044/boostrap-how-to-stick-a-button-over-an-image-when-re-sizing*/
+        .img-wrapper {
+            position: relative;
+        }
+
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: left;
+        }
+
+        .img-overlay:before {
+            content: ' ';
+            display: block;
+            /* adjust 'height' to position overlay content vertically */
+            height: 40%;
+        }
+
+        /*end*/
+
+        .performanceTable tr.human-row {
+            background: #f5f5f5;
+        }
+
+        .performanceTable tr.random-row {
+            background: #fafafa;
+        }
+
+        .performanceTable {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
+            border: 2px solid #ccc;
+            background-color: #9da3bf14;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .performanceTable .institution {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .performanceTable .date {
+            font-weight: normal;
+            background-color: #777;
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+
+        .performanceTable td,
+        .performanceTable th {
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .btn-normal {
+            padding: 3px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            width:50%;    //Specify your width here
+        }
+
+        .ArticleCopy{
+            font-family: 'Kalam';
+            /*"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;*/
+            /*width: 80%;*/
+            margin:0 auto;
+/*            border: 0px solid #ddd;
+            padding: 0rem;*/
+        }
+
+        .ArticleCopy blockquote {
+            border-radius: 4px;
+            /*position: relative;  /*  <--- */*/
+            font-style: italic;
+            text-align: left;
+            padding: 1rem 1.2rem;
+            width: 90%;  /* create space for the quotes */
+            color: #4a4a4a;
+            margin: 0.2rem auto 0.2rem;
+            color: #4a4a4a;
+            background: #E8E8E8;
+            font-size: 0.9rem;
+        }
+
+
+        table tr *:nth-child(3) {
+          border-right: 2px dashed #bfbfbf;
+          border-left: 2px dashed #bfbfbf;
+        }
+
+        table tr *:nth-child(5) {
+          border-right: 2px dashed #bfbfbf;
+        }
+        /*table tr td:nth-child(5) {*/
+          /*border-right: 1px dashed #bfbfbf;*/
+        /*}*/
+
+    </style>
+
+</head>
+<body data-spy="scroll" data-target="#navbarCollapse" data-offset="200">
+
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info text-white">
+    <!-- <a style="font-variant: small-caps;">Cosmos</a> -->
+    <a class="navbar-brand" href="/">Cosmos QA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-font text-white" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-font text-white" href="#example">Examples</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-font text-white" href="#leaderboard">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-font text-white" href="#authors">Authors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-font text-white" href="#contact">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="jumbotron row">
+        <h2><span class="cosmos-name">Cosmos QA</span> <span class="cosmos-title">: Machine Reading Comprehension with Contextual Commonsense Reasoning (EMNLP'2019) </span></h2>
+        <a class="btn btn-lg btn-warning" href="#" role="button">Paper &raquo;</a>
+        <a class="btn btn-lg btn-success" href="https://github.com/wilburOne/cosmosqa/" role="button">Code &raquo;</a>
+        <a class="btn btn-lg btn-danger" href="https://github.com/wilburOne/cosmosqa/tree/master/data/" role="button">Dataset
+            &raquo;</a>
+    </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="about" id="about">
+                <div>
+                    <h4>What is <span class="qa-name-large">Cosmos QA</span>?</h4>
+                    <hr>
+                </div>
+                <p style="font-size: 1rem;"><span class="qa-name-normal">Cosmos QA</span> is a large-scale dataset of <b>35.6K</b>
+                    problems that require <b>commonsense</b>-based reading comprehension, formulated
+                    as <b>multiple-choice</b> questions. It focuses on reading between the lines over
+                    a diverse collection of people's everyday narratives, asking questions concerning on the likely
+                    <b>causes</b> or <b>effects</b>
+                    of events that require reasoning beyond the exact text spans in the context.</p>
+
+                <div class="ArticleCopy">
+                    <blockquote>
+                    Reading comprehension requires not only understanding what is stated explicitly in text, but
+                        also <i>reading between the lines</i>, i.e., understanding what is not stated yet obviously true (Norvig, 1987).
+                    </blockquote>
+                </div>
+            </div>
+            <br/>
+            <div class="example" id="example">
+                <div>
+                    <h4><span class="qa-name-large">Cosmos QA</span> Examples</h4>
+                    <hr>
+                </div>
+
+                <div class="border border-2 border-info rounded bg-light" style="padding-right: 10px; padding-left: 10px;">
+                    <h5> <b><span class="text-info">  Example 1 </span></b> </h5>
+                    <p><u><b>Paragraph</b></u>: It's a very humbling experience when you need someone to dress you every morning,
+                    tie your shoes, and put your hair up. Every menial task takes an unprecedented amount of effort. It
+                    made me appreciate Dan even more. But anyway I shan't dwell on this (I'm not dying after all) and not
+                    let it detact from my lovely 5 days with my friends visiting from Jersey.</p>
+                    <p><u><b>Question</b></u>: What's a possible reason the writer needed someone to dress him every morning?</p>
+
+                    <p><u><b>Options</b></u>: (click the choice to see if it's correct or not)</p>
+                    <div class="btn-group-vertical answergroup" id="g0">
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d0-0">A. The writer
+                            doesn't like putting effort into these tasks.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="gold-0">B. The writer
+                            has a physical disability.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d1-0">C. The writer
+                            is bad at doing his own hair.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d2-0">D. None of the
+                            above choices.
+                        </button>
+                    </div>
+                    <p></p>
+                </div>
+                <br/>
+                <div class="border border-2 border-info rounded bg-light" style="padding-right: 10px; padding-left: 10px;">
+                    <h5> <b><span class="text-info"> Example 2 </span> </b> </h5>
+                    <p><u><b>Paragraph</b></u>: A woman had topped herself by jumping off the roof of the hospital she had just
+                    recently been admitted to. She was there because the first or perhaps latest suicide attempt was unsuccessful.
+                     She put her clothes on, folded the hospital gown and made the bed. She walked through the unit unimpeded and
+                    took the elevator to the top floor.</p>
+                    <p><u><b>Question</b></u>: What would have happened to the woman if the staff at the hospital were doing their
+                    job properly?</p>
+
+                    <p><u><b>Options</b></u>: (click the choice to see if it's correct or not)</p>
+                    <div class="btn-group-vertical answergroup" id="g1">
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="gold-1">A. The woman would
+                            have been stopped before she left to take the elevator to the top floor and she would have lived.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d0-1">B. She would have
+                            been ushered to the elevator with some company.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d1-1">C. She would have
+                             managed to get to the elevator quicker with some assistance.
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary answerbutton" id="d2-1">D. None of the above
+                             choices.
+                        </button>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <div class="col-md-8">
+            <div id="leaderboard" class="anchor-target" style="margin-left: 1rem;">
+                <h3><span class="qa-name-large">Cosmos QA</span> Leaderboard</h3>
+                <hr>
+                <div style="padding-top: 10px; padding-bottom: 10px;"><b>Submitting to the Leaderboard:</b></div>
+
+                <div>
+                    <p>To benchmark approaches to <span class="qa-name-small">Cosmos QA</span>, we have a leaderboard for
+                    the test set. If you have a model for solving <span class="qa-name-small">Cosmos QA</span> and would like to make a submission, 
+                    you should follow the <b>rules</b> and <b>policies</b>, and create your submission
+                        <a href="#" target="_blank"><span class="text-danger" style="font-size: 15pt"><b>here</b></span></a>.
+                    </p>
+                </div>
+                <br/>
+   
+                <table class="table performanceTable box-shadow">
+                    <tbody>
+                    <tr>
+                        <th>Rank</th>
+                        <th style="min-width: 85%;">Model</th>
+                        <th style="max-width: 15%;">Test accuracy (%)</th>
+                    </tr>
+                    <tr class="human-row">
+                        <td></td>
+                        <td>Human Performance <a href="#">(Huang et al., 2019)</a></td>
+                        <td>94.0</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>🥇</p><span class="date">August 30</span></td>
+                        <td>BERT-FT Multiway<p class="institution">Huang et al., 2019</p><a class="link" href="#"></a></td>
+                        <td><b>68.4</b></td>
+                    </tr>
+
+                    <tr>
+                        <td><p>2</p><span class="date">August 30</span></td>
+                        <td>DMCN<p class="institution">Shanghai Jiao Tong University， Zhang et al., 2019</p>
+                            <a class="link" href="https://arxiv.org/pdf/1901.09381.pdf">https://arxiv.org/pdf/1901.09381.pdf</a></td>
+                        <td>67.6</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>3</p><span class="date">August 30</span></td>
+                        <td>BERT-FT<p class="institution">Google AI Language, Devlin et al., 2018</p>
+                            <a class="link" href="https://arxiv.org/pdf/1810.04805.pdf">https://arxiv.org/pdf/1810.04805.pdf</a></td>
+                        <td>67.1</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>4</p><span class="date">August 30</span></td>
+                        <td>GPT-FT<p class="institution">OpenAI, Radford et al., 2018</p>
+                            <a class="link" href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">
+                                https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf</a></td>
+                        <td>54.4</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>5</p><span class="date">August 30</span></td>
+                        <td>Commonsense-RC<p class="institution">Yuanfudao Research, Wang et al., 2018</p>
+                            <a class="link" href="https://arxiv.org/pdf/1803.00191.pdf">https://arxiv.org/pdf/1803.00191.pdf</a></td>
+                        <td>48.2</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>6</p><span class="date">August 30</span></td>
+                        <td>Gated-Attention Reader<p class="institution">Carnegie Mellon University, Dhingra et al., 2017</p>
+                            <a class="link" href="https://arxiv.org/pdf/1606.01549.pdf">https://arxiv.org/pdf/1606.01549.pdf</a></td>
+                        <td>46.2</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>7</p><span class="date">August 30</span></td>
+                        <td>Co-Matching<p class="institution">Singapore Management University & IBM Research, Wang et al., 2018</p>
+                            <a class="link" href="https://arxiv.org/pdf/1806.04068.pdf">https://arxiv.org/pdf/1806.04068.pdf</a></td>
+                        <td>44.7</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>8</p><span class="date">August 30</span></td>
+                        <td>Stanford Attention Reader<p class="institution">Stanford University, Chen et al., 2016</p>
+                            <a class="link" href="https://arxiv.org/pdf/1606.02858v2.pdf">https://arxiv.org/pdf/1606.02858v2.pdf</a></td>
+                        <td>44.4</td>
+                    </tr>
+
+                    <tr>
+                        <td><p>9</p><span class="date">August 30</span></td>
+                        <td>Sliding Window<p class="institution">Richardson et al., 2013</p>
+                            <a class="link" href="https://www.aclweb.org/anthology/D13-1020">https://www.aclweb.org/anthology/D13-1020</a></td>
+                        <td>24.9</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div id="authors" class="anchor-target">
+        <h4>Authors</h4>
+        <div class="row justify-content-center" style="margin: 0 auto;">
+            <div class="card headshot box-shadow">
+                <!-- <img class="card-img-top" src="{{ url_for('static', filename='lifu.jpg')}}" alt="lifu"> -->
+                <img class="card-img-top" src="static/lifu.jpg" alt="lifu">
+                <div class="card-body">
+                    <p class="card-text"><a href="https://wilburone.github.io/">Lifu Huang</a></p>
+                </div>
+            </div>
+            <div class="card headshot box-shadow">
+                <!-- <img class="card-img-top" src="{{ url_for('static', filename='ronan.jpg')}}" alt="ronan"> -->
+                <img class="card-img-top" src="static/ronan.jpg" alt="ronan">
+                <div class="card-body">
+                    <p class="card-text"><a href="https://allenai.org/team/ronanl/">Ronan Le Bras</a></p>
+                </div>
+            </div>
+            <div class="card headshot box-shadow">
+                <!-- <img class="card-img-top" src="{{ url_for('static', filename='chandra.jpg')}}" alt="chandra"> -->
+                <img class="card-img-top" src="static/chandra.jpg" alt="chandra">
+                <div class="card-body">
+                    <p class="card-text"><a href="https://allenai.org/team/chandrab/">Chandra Bhagavatula</a></p>
+                </div>
+            </div>
+            <div class="card headshot box-shadow">
+                <!-- <img class="card-img-top" src="{{ url_for('static', filename='yejin.jpg')}}" alt="yejin"> -->
+                <img class="card-img-top" src="static/yejin.jpg" alt="yejin">
+                <div class="card-body">
+                    <p class="card-text"><a href="https://homes.cs.washington.edu/~yejin/">Yejin Choi</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="anchor-target">
+        <h4>Contact</h4>
+        <p>Questions about the dataset, or want to get in touch? Please contact Lifu Huang on <a
+                href="https://twitter.com/lifu_huang">Twitter</a>, open up a pull request on <a
+                href="https://github.com/wilburOne/cosmosqa">Github</a>, or email me: <a href="warrior.fu@gmail.com">Gmail</a>.</p>
+    </div>
+
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+
+<script>
+
+    $("#g0").find("button").click(function () {
+        if (this.id.startsWith('gold')) {
+            $(this).addClass('clicked-correct');
+            $(this).parent().parent().find("p.msg").text("Correct! 🙂")
+        } else {
+            $(this).addClass('clicked-wrong');
+            $(this).parent().parent().find("p.msg").text("Incorrect 😢")
+        }
+
+        // Find the correct one otherwise
+        $(this).siblings().each(function () {
+            if (this.id.startsWith('gold')) {
+                $(this).addClass('clicked-correct');
+            } else {
+                $(this).removeClass('clicked-wrong');
+            }
+        });
+    });
+    $("#g1").find("button").click(function () {
+        if (this.id.startsWith('gold')) {
+            $(this).addClass('clicked-correct');
+            $(this).parent().parent().find("p.msg").text("Correct! 🙂")
+        } else {
+            $(this).addClass('clicked-wrong');
+            $(this).parent().parent().find("p.msg").text("Incorrect 😢")
+        }
+
+        // Find the correct one otherwise
+        $(this).siblings().each(function () {
+            if (this.id.startsWith('gold')) {
+                $(this).addClass('clicked-correct');
+            } else {
+                $(this).removeClass('clicked-wrong');
+            }
+        });
+    });
+</script>
+</body>
+</html>
 
